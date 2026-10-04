@@ -18,7 +18,7 @@ export class SharedChannelController {
   }
 
   @Post('api/channels/:id/messages')
-  async postApiChannels:idMessages() {
+  async postApiChannelsIdMessages() {
     throw new NotImplementedException();
   }
 

@@ -1,28 +1,41 @@
-// OrderManagement DTOs
+// OrderManagement DTOs and Zod schemas
+import { z } from 'zod';
 
-export interface PostApiOrdersRequestDto {
-  vendorId: string;
-}
+export const createOrderSchema = z
+  .object({
+    vendorId: z.string().min(1),
+    items: z
+      .array(
+        z
+          .object({
+            description: z.string().trim().min(1).max(500),
+            quantity: z.number().int().positive(),
+            unitPrice: z.number().nonnegative(),
+          })
+          .strict(),
+      )
+      .max(100)
+      .default([]),
+  })
+  .strict();
 
-export interface PostApiOrdersResponseDto {
-  id: string;
-  status: string;
-  customerId: string;
-}
+export type CreateOrderDto = z.infer<typeof createOrderSchema>;
 
-export interface PatchApiOrders:idConfirmRequestDto {
-  estimatedDelivery: string;
-}
+export const confirmOrderSchema = z
+  .object({
+    estimatedDelivery: z
+      .string()
+      .refine(
+        (val) => {
+          const d = new Date(val);
+          if (isNaN(d.getTime())) return false;
+          const today = new Date();
+          today.setUTCHours(0, 0, 0, 0);
+          return d.getTime() >= today.getTime();
+        },
+        { message: 'estimatedDelivery must be a valid date and not in the past' },
+      ),
+  })
+  .strict();
 
-export interface PatchApiOrders:idConfirmResponseDto {
-  id: string;
-  status: string;
-}
-
-export interface GetApiOrdersRequestDto {
-}
-
-export interface GetApiOrdersResponseDto {
-  id: string;
-  status: string;
-}
+export type ConfirmOrderDto = z.infer<typeof confirmOrderSchema>;

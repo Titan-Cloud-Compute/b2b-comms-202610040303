@@ -1,30 +1,57 @@
-import { Controller, NotImplementedException, UseGuards, Post, Patch, Get } from '@nestjs/common';
+import {
+  Controller,
+  UseGuards,
+  Post,
+  Patch,
+  Get,
+  Req,
+  Param,
+  Body,
+  HttpCode,
+  BadRequestException,
+} from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { UserRole } from '@prisma/client';
+import type { Request } from 'express';
 import { JwtAuthGuard } from '../../auth/jwt-auth.guard';
 import { Roles, RolesGuard } from '../../auth/roles.guard';
 import { OrderManagementService } from './order-management.service';
+import { createOrderSchema, confirmOrderSchema } from './order-management.dto';
 
 @ApiTags('order-management')
 @UseGuards(JwtAuthGuard, RolesGuard)
-@Roles(UserRole.CUSTOMER)
-@Controller('api/order-management')
+@Controller('api/orders')
 export class OrderManagementController {
-  constructor(private readonly ordermanagement: OrderManagementService) {}
+  constructor(private readonly orderManagement: OrderManagementService) {}
 
-  @Post('api/orders')
-  async postApiOrders() {
-    throw new NotImplementedException();
+  @Post()
+  @HttpCode(201)
+  @Roles(UserRole.CUSTOMER)
+  async create(@Req() req: Request, @Body() body: unknown) {
+    const result = createOrderSchema.safeParse(body);
+    if (!result.success) {
+      throw new BadRequestException(result.error.flatten());
+    }
+    return this.orderManagement.create(req.session!.userId, result.data);
   }
 
-  @Patch('api/orders/:id/confirm')
-  async patchApiOrders:idConfirm() {
-    throw new NotImplementedException();
+  @Patch(':id/confirm')
+  @Roles(UserRole.VENDOR)
+  async confirm(
+    @Req() req: Request,
+    @Param('id') id: string,
+    @Body() body: unknown,
+  ) {
+    const result = confirmOrderSchema.safeParse(body);
+    if (!result.success) {
+      throw new BadRequestException(result.error.flatten());
+    }
+    return this.orderManagement.confirm(req.session!.userId, id, result.data);
   }
 
-  @Get('api/orders')
-  async getApiOrders() {
-    throw new NotImplementedException();
+  @Get()
+  @Roles(UserRole.CUSTOMER, UserRole.VENDOR, UserRole.ADMIN)
+  async list(@Req() req: Request) {
+    return this.orderManagement.list(req.session!);
   }
-
 }

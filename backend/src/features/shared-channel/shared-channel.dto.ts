@@ -9,11 +9,11 @@ export interface PostApiChannelsResponseDto {
   name: string;
 }
 
-export interface PostApiChannels:idMessagesRequestDto {
+export interface PostApiChannelsIdMessagesRequestDto {
   body: string;
 }
 
-export interface PostApiChannels:idMessagesResponseDto {
+export interface PostApiChannelsIdMessagesResponseDto {
   id: string;
   body: string;
   channelId: string;
