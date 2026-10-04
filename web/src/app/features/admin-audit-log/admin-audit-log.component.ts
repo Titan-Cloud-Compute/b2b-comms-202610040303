@@ -21,7 +21,7 @@ function registerAuditLogMocks(client: MockApiClient): void {
   client.registerMock<AuditEntry>('POST', AUDIT_LOG_PATH, async (body) => {
     const b = (body ?? {}) as { action?: string; userId?: string };
     const entry: AuditEntry = {
-      id: crypto.randomUUID(),
+      id: '00000000-0000-4000-8000-' + String(Date.now()).padStart(12, '0').slice(-12),
       action: String(b.action ?? ''),
       userId: String(b.userId ?? ''),
       createdAt: new Date().toISOString(),
@@ -107,8 +107,8 @@ export class AdminAuditLogComponent implements OnInit {
       const list = await this.api.get<AuditEntry[]>(AUDIT_LOG_PATH);
       this.entries = this.sort(Array.isArray(list) ? list : []);
       this.error = '';
-    } catch (e: any) {
-      this.error = e?.message || 'Failed to load audit log';
+    } catch (e: unknown) {
+      this.error = (e instanceof Error && e.message) || 'Failed to load audit log';
     }
   }
 
@@ -123,8 +123,8 @@ export class AdminAuditLogComponent implements OnInit {
       this.action = '';
       this.userId = '';
       this.error = '';
-    } catch (e: any) {
-      this.error = e?.message || 'Failed to record audit entry';
+    } catch (e: unknown) {
+      this.error = (e instanceof Error && e.message) || 'Failed to record audit entry';
     } finally {
       this.saving = false;
     }
