@@ -116,7 +116,7 @@ import { AdminUser, CreateUserFormValue, FirmOption, ProvisionRole } from './use
     </section>
   `,
   styles: [`
-    .card { background: white; border-radius: var(--radius-lg); padding: 1.5rem; box-shadow: var(--shadow-card); margin-bottom: 2rem; max-width: 640px; }
+    .card { background: var(--color-white); border-radius: var(--radius-lg); padding: 1.5rem; box-shadow: var(--shadow-card); margin-bottom: 2rem; max-width: 640px; }
     .back-btn { background: none; border: none; color: var(--color-info); font-size: var(--font-size-sm); font-weight: 600; cursor: pointer; padding: 0 0 1rem; }
     h2 { font-size: var(--font-size-xl); color: var(--color-text-primary); margin: 0 0 1.25rem; }
     .detail-grid { display: grid; grid-template-columns: 10rem 1fr; row-gap: 0.75rem; column-gap: 1rem; margin: 0; }
@@ -134,17 +134,17 @@ import { AdminUser, CreateUserFormValue, FirmOption, ProvisionRole } from './use
     .page-form { display: flex; flex-direction: column; gap: 1.25rem; }
     .form-group { display: flex; flex-direction: column; gap: 0.375rem; }
     .form-group label { font-size: var(--font-size-sm); font-weight: 600; color: var(--color-text-primary); }
-    .form-group input, .form-group select { padding: 0.625rem 0.75rem; font-size: var(--font-size-input); border: 1px solid var(--color-gray-300); border-radius: var(--radius-btn); background: white; min-height: 44px; }
+    .form-group input, .form-group select { padding: 0.625rem 0.75rem; font-size: var(--font-size-input); border: 1px solid var(--color-gray-300); border-radius: var(--radius-btn); background: var(--color-white); min-height: 44px; }
     .form-group input:focus, .form-group select:focus { outline: none; border-color: var(--color-info); box-shadow: var(--shadow-focus); }
     .help-text { font-size: var(--font-size-sm); color: var(--color-text-secondary); margin: 0.25rem 0 0; }
     .role-toggle { display: inline-flex; border: 1px solid var(--color-gray-300); border-radius: var(--radius-btn); overflow: hidden; align-self: flex-start; }
-    .role-option { padding: 0.625rem 1.25rem; font-size: var(--font-size-sm); font-weight: 600; color: var(--color-text-secondary); background: white; border: none; cursor: pointer; min-height: 44px; }
+    .role-option { padding: 0.625rem 1.25rem; font-size: var(--font-size-sm); font-weight: 600; color: var(--color-text-secondary); background: var(--color-white); border: none; cursor: pointer; min-height: 44px; }
     .role-option + .role-option { border-left: 1px solid var(--color-gray-300); }
-    .role-option.active { background: var(--color-info); color: white; }
+    .role-option.active { background: var(--color-info); color: var(--color-white); }
     .form-error { color: var(--color-error-700); font-size: var(--font-size-sm); margin: 0; }
     .form-actions { display: flex; justify-content: flex-end; gap: 0.75rem; }
     .cancel-btn { padding: 0.625rem 1.25rem; font-size: var(--font-size-sm); font-weight: 600; color: var(--color-text-secondary); background: var(--color-neutral-100); border: 1px solid var(--color-gray-300); border-radius: var(--radius-btn); cursor: pointer; min-height: 44px; }
-    .save-btn { padding: 0.625rem 1.25rem; font-size: var(--font-size-sm); font-weight: 600; color: white; background: var(--color-info); border: none; border-radius: var(--radius-btn); cursor: pointer; min-height: 44px; }
+    .save-btn { padding: 0.625rem 1.25rem; font-size: var(--font-size-sm); font-weight: 600; color: var(--color-white); background: var(--color-info); border: none; border-radius: var(--radius-btn); cursor: pointer; min-height: 44px; }
     .save-btn:disabled { opacity: 0.6; cursor: not-allowed; }
   `]
 })

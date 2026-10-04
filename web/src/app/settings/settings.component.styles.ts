@@ -80,7 +80,7 @@ export const settingsComponentStyles = `
     .toggle-row:last-child { border-bottom: none; }
     .toggle-row input { width: 20px; height: 20px; }
     .modal-overlay {
-      position: fixed; inset: 0; background: rgba(14, 23, 38, 0.6);
+      position: fixed; inset: 0; background: var(--color-overlay);
       display: flex; align-items: center; justify-content: center; z-index: 1000;
       padding: 1rem;
     }

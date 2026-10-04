@@ -20,7 +20,7 @@ import { AuthService } from './auth.service';
   styles: [`
     .sticky-footer {
       padding: 1rem 2rem;
-      background: white;
+      background: var(--color-white);
       border-top: 1px solid var(--color-border);
       text-align: center;
     }

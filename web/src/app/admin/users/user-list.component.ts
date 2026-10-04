@@ -125,13 +125,13 @@ import { AdminUser } from './user.types';
     </section>
   `,
   styles: [`
-    .card { background: white; border-radius: var(--radius-lg); padding: 1.5rem; box-shadow: var(--shadow-card); margin-bottom: 2rem; }
+    .card { background: var(--color-white); border-radius: var(--radius-lg); padding: 1.5rem; box-shadow: var(--shadow-card); margin-bottom: 2rem; }
     .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem; flex-wrap: wrap; gap: 1rem; }
     h2 { font-size: var(--font-size-lg); color: var(--color-text-primary); margin: 0; display: flex; align-items: center; gap: 0.5rem; }
     .filter-group { display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center; }
-    .filter-search { padding: 0.5rem 1rem; font-size: var(--font-size-input); border: 1px solid var(--color-gray-300); border-radius: var(--radius-btn); min-height: 44px; background: white; min-width: 14rem; }
-    .filter-select { padding: 0.5rem 1rem; font-size: var(--font-size-input); border: 1px solid var(--color-gray-300); border-radius: var(--radius-btn); min-height: 44px; background: white; }
-    .new-user-btn { padding: 0.5rem 1rem; font-size: var(--font-size-sm); font-weight: 600; color: white; background: var(--color-info); border: none; border-radius: var(--radius-btn); cursor: pointer; min-height: 44px; white-space: nowrap; }
+    .filter-search { padding: 0.5rem 1rem; font-size: var(--font-size-input); border: 1px solid var(--color-gray-300); border-radius: var(--radius-btn); min-height: 44px; background: var(--color-white); min-width: 14rem; }
+    .filter-select { padding: 0.5rem 1rem; font-size: var(--font-size-input); border: 1px solid var(--color-gray-300); border-radius: var(--radius-btn); min-height: 44px; background: var(--color-white); }
+    .new-user-btn { padding: 0.5rem 1rem; font-size: var(--font-size-sm); font-weight: 600; color: var(--color-white); background: var(--color-info); border: none; border-radius: var(--radius-btn); cursor: pointer; min-height: 44px; white-space: nowrap; }
     .new-user-btn:hover { background: var(--color-info-hover); }
     .table-container { overflow-x: auto; }
     .data-table { width: 100%; border-collapse: collapse; }

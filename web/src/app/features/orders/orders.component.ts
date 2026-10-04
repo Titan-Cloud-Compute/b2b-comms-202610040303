@@ -29,7 +29,7 @@ interface LineItemForm {
           <fieldset>
             <legend>Line Items</legend>
             @for (item of lineItems; track $index; let i = $index) {
-              <div style="margin-bottom:8px;" [attr.data-testid]="'line-item-row-' + i">
+              <div class="line-item-row" [attr.data-testid]="'line-item-row-' + i">
                 <input
                   [attr.name]="'desc-' + i"
                   [attr.data-testid]="'line-item-desc-' + i"
@@ -127,6 +127,9 @@ interface LineItemForm {
     </div>
     </app-page>
   `,
+  styles: [`
+    .line-item-row { margin-bottom: var(--space-2); }
+  `],
 })
 export class OrdersComponent implements OnInit {
   orders = signal<OrderSummary[]>([]);

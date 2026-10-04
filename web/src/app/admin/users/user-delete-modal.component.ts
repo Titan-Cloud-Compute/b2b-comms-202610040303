@@ -66,15 +66,15 @@ export interface UserDeleteTarget {
     </div>
   `,
   styles: [`
-    .modal-backdrop { position: fixed; inset: 0; background: rgba(14,23,38,0.45); display: flex; align-items: center; justify-content: center; padding: 1rem; z-index: 1000; }
-    .modal-card { background: white; border-radius: var(--radius-lg); padding: 1.5rem; box-shadow: var(--shadow-modal); width: 100%; max-width: 480px; }
+    .modal-backdrop { position: fixed; inset: 0; background: var(--color-overlay); display: flex; align-items: center; justify-content: center; padding: 1rem; z-index: 1000; }
+    .modal-card { background: var(--color-white); border-radius: var(--radius-lg); padding: 1.5rem; box-shadow: var(--shadow-modal); width: 100%; max-width: 480px; }
     h2 { font-size: var(--font-size-xl); color: var(--color-text-primary); margin: 0 0 0.75rem; }
     .lead { font-size: var(--font-size-md); color: var(--color-text-primary); margin: 0 0 0.75rem; line-height: 1.5; }
     .note { font-size: var(--font-size-sm); color: var(--color-text-secondary); margin: 0 0 0.75rem; line-height: 1.5; }
     .warning { font-size: var(--font-size-sm); font-weight: 600; color: var(--color-error-700); margin: 0 0 1.5rem; }
     .modal-actions { display: flex; justify-content: flex-end; gap: 0.75rem; }
     .cancel-btn { padding: 0.625rem 1.25rem; font-size: var(--font-size-sm); font-weight: 600; color: var(--color-text-secondary); background: var(--color-neutral-100); border: 1px solid var(--color-gray-300); border-radius: var(--radius-btn); cursor: pointer; min-height: 44px; }
-    .delete-btn { padding: 0.625rem 1.25rem; font-size: var(--font-size-sm); font-weight: 600; color: white; background: var(--color-error-700); border: none; border-radius: var(--radius-btn); cursor: pointer; min-height: 44px; }
+    .delete-btn { padding: 0.625rem 1.25rem; font-size: var(--font-size-sm); font-weight: 600; color: var(--color-white); background: var(--color-error-700); border: none; border-radius: var(--radius-btn); cursor: pointer; min-height: 44px; }
     .cancel-btn:disabled, .delete-btn:disabled { opacity: 0.6; cursor: not-allowed; }
   `]
 })

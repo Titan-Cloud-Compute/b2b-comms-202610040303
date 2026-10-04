@@ -73,12 +73,12 @@ import { PageComponent } from '../../shared/layout/page.component';
   styles: [`
     .status-badge {
       display: inline-block;
-      padding: 2px 8px;
-      border-radius: 4px;
+      padding: var(--space-1) var(--space-2);
+      border-radius: var(--radius-sm);
       background-color: var(--color-success-bg);
       color: var(--color-success);
-      font-size: 0.85em;
-      margin-left: 8px;
+      font-size: var(--font-size-sm);
+      margin-left: var(--space-2);
     }
   `],
 })

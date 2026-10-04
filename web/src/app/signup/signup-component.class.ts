@@ -22,7 +22,7 @@ import { TokenModelResolver } from './signup-admin-model';
         <div class="logo">
           <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
             <rect width="48" height="48" rx="12" style="fill: var(--color-primary)"/>
-            <path d="M14 24L22 32L34 16" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M14 24L22 32L34 16" stroke="currentColor" style="color: var(--color-white)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </div>
         <h1>Create Account</h1>

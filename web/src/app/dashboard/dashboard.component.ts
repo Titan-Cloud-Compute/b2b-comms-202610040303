@@ -47,7 +47,7 @@ import { FormsModule } from '@angular/forms';
       margin: 0;
     }
     .placeholder-card {
-      background: white;
+      background: var(--color-white);
       border-radius: var(--radius-card);
       border: 1px solid var(--color-border);
       padding: 2rem;
@@ -76,7 +76,7 @@ import { FormsModule } from '@angular/forms';
       font-size: var(--font-size-input, 1rem);
       border: 1px solid var(--color-gray-300);
       border-radius: var(--radius-btn);
-      background: white;
+      background: var(--color-white);
       min-height: 44px;
     }
     .btn-primary {
@@ -84,7 +84,7 @@ import { FormsModule } from '@angular/forms';
       padding: 0.625rem 1.5rem;
       font-size: var(--font-size-sm);
       font-weight: 600;
-      color: white;
+      color: var(--color-white);
       background: var(--color-primary);
       border: none;
       border-radius: var(--radius-btn);
