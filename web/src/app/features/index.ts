@@ -17,7 +17,7 @@ import { Routes } from '@angular/router';
 export const FEATURE_ROUTES: Routes = [];
 // <<codegen:feature-routes:start>>
 FEATURE_ROUTES.push(
-  { path: 'vendor/profile', loadComponent: () => import('./vendor-profile/vendor-profile.component').then(m => m.VendorProfileComponent) },
+  { path: 'vendor/profile', loadComponent: () => import('./vendor-onboarding/vendor-onboarding.component').then(m => m.VendorOnboardingComponent) },
   { path: 'admin/customers', loadComponent: () => import('./admin-customers/admin-customers.component').then(m => m.AdminCustomersComponent) },
   { path: 'channels', loadComponent: () => import('./channels/channels.component').then(m => m.ChannelsComponent) },
   { path: 'orders', loadComponent: () => import('./orders/orders.component').then(m => m.OrdersComponent) },
