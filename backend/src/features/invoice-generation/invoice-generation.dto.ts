@@ -11,10 +11,11 @@ export interface PostApiInvoicesResponseDto {
   amount: number;
 }
 
-export interface GetApiInvoices:idDownloadRequestDto {
+export interface GetApiInvoiceDownloadRequestDto {
+  id: string;
 }
 
-export interface GetApiInvoices:idDownloadResponseDto {
+export interface GetApiInvoiceDownloadResponseDto {
   id: string;
   downloadUrl: string;
 }
