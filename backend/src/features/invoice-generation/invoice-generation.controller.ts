@@ -18,7 +18,7 @@ export class InvoiceGenerationController {
   }
 
   @Get('api/invoices/:id/download')
-  async getApiInvoices:idDownload() {
+  async getApiInvoicesDownload() {
     throw new NotImplementedException();
   }
 
