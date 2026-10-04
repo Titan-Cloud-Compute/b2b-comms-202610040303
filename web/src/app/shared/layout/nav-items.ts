@@ -5,13 +5,21 @@ export interface NavItem {
   adminOnly?: boolean;
   superAdminOnly?: boolean;
   tab?: string;
+  /** Sidebar group label (Main / Vendor / Customer / Admin). Defaults to Main. */
+  group?: NavGroup;
 }
+
+export type NavGroup = 'Main' | 'Vendor' | 'Customer' | 'Admin';
+
+/** Sidebar group order. */
+export const NAV_GROUPS: NavGroup[] = ['Main', 'Vendor', 'Customer', 'Admin'];
 
 /** Entries shown to signed-in users (non-admin shell). */
 export const FIRM_NAV_ITEMS: NavItem[] = [
   {
     path: '/dashboard',
     label: 'Dashboard',
+    group: 'Main',
     icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>',
   },
 ];
@@ -50,12 +58,21 @@ export const ADMIN_TAB_MAP: Record<string, string> = {
 };
 // <<codegen:nav-items:start>>
 FIRM_NAV_ITEMS.push(
-  { path: '/vendor/profile', label: 'Vendor Profile', icon: '' },
-  { path: '/admin/customers', label: 'Customer Management', icon: '' },
-  { path: '/channels', label: 'Channels', icon: '' },
-  { path: '/orders', label: 'Orders', icon: '' },
-  { path: '/invoices', label: 'Invoices', icon: '' },
-  { path: '/settings/notifications', label: 'Notification Settings', icon: '' },
-  { path: '/admin/audit-log', label: 'Audit Log', icon: '' },
+  { path: '/vendor/profile', label: 'Vendor Profile', icon: '', group: 'Vendor' },
+  { path: '/admin/customers', label: 'Customer Management', icon: '', group: 'Admin' },
+  { path: '/channels', label: 'Channels', icon: '', group: 'Vendor' },
+  { path: '/orders', label: 'Orders', icon: '', group: 'Customer' },
+  { path: '/invoices', label: 'Invoices', icon: '', group: 'Vendor' },
+  { path: '/settings/notifications', label: 'Notification Settings', icon: '', group: 'Vendor' },
+  { path: '/admin/audit-log', label: 'Audit Log', icon: '', group: 'Admin' },
 );
 // <<codegen:nav-items:end>>
+
+// Main-group Settings entry (card: /settings — nav Main). Appended after the
+// codegen block so the dashboard + feature entries keep their bottom-nav order.
+FIRM_NAV_ITEMS.push({
+  path: '/settings',
+  label: 'Settings',
+  group: 'Main',
+  icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.2 4.2l2.8 2.8M17 17l2.8 2.8M1 12h4M19 12h4M4.2 19.8 7 17M17 7l2.8-2.8"/></svg>',
+});

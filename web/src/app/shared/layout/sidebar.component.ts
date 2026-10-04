@@ -4,7 +4,7 @@ import { RouterModule, Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { SafeHtmlPipe } from '../safe-html.pipe';
 import { AuthApi } from '../api/auth-api.service';
-import { FIRM_NAV_ITEMS, ADMIN_NAV_ITEMS, SHARED_NAV_ITEMS, ADMIN_TAB_MAP } from './nav-items';
+import { FIRM_NAV_ITEMS, ADMIN_NAV_ITEMS, SHARED_NAV_ITEMS, ADMIN_TAB_MAP, NAV_GROUPS, NavItem, NavGroup } from './nav-items';
 import { SIDEBAR_TEMPLATE } from './sidebar.template';
 
 @Component({
@@ -15,7 +15,7 @@ import { SIDEBAR_TEMPLATE } from './sidebar.template';
   styles: [`
     .sidebar {
       width: 260px;
-      background: white;
+      background: var(--color-surface);
       border-right: 1px solid var(--color-border);
       display: flex;
       flex-direction: column;
@@ -202,7 +202,7 @@ import { SIDEBAR_TEMPLATE } from './sidebar.template';
     }
 
     .lang-btn.active {
-      background: white;
+      background: var(--color-surface);
       color: var(--color-primary);
       box-shadow: var(--shadow-card);
     }
@@ -218,7 +218,7 @@ import { SIDEBAR_TEMPLATE } from './sidebar.template';
     }
 
     .lang-btn.active:disabled:hover {
-      background: white;
+      background: var(--color-surface);
       color: var(--color-primary);
     }
 
@@ -284,7 +284,7 @@ import { SIDEBAR_TEMPLATE } from './sidebar.template';
       display: flex;
       align-items: center;
       justify-content: center;
-      color: white;
+      color: var(--color-on-primary);
       font-weight: 600;
       font-size: var(--font-size-sm);
       flex-shrink: 0;
@@ -389,6 +389,24 @@ export class SidebarComponent {
   auth = inject(AuthService);
   private router = inject(Router);
   private authApi = inject(AuthApi);
+
+  /**
+   * Sidebar sections in card order: Main / Vendor / Customer / Admin.
+   * Feature entries carry their own group; admins additionally get the
+   * console entries (Overview / Users / App Settings) inside the Admin group.
+   */
+  navGroups = computed<{ label: NavGroup; items: NavItem[] }[]>(() => {
+    const isAdmin = this.auth.hasAdminRole();
+    const items: NavItem[] = [...this.firmNavItems];
+    if (isAdmin) {
+      for (const item of this.adminNavItems) {
+        if (!item.superAdminOnly || this.auth.isSuperAdmin()) items.push({ ...item, group: 'Admin' });
+      }
+    }
+    return NAV_GROUPS
+      .map(label => ({ label, items: items.filter(i => (i.group ?? 'Main') === label) }))
+      .filter(g => g.items.length > 0);
+  });
 
   initials = computed(() => {
     const name = this.auth.user()?.name || 'U U';

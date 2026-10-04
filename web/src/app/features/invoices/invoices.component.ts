@@ -2,6 +2,7 @@ import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ApiClient, ApiError } from '../../shared/api/api-client';
+import { PageComponent } from '../../shared/layout/page.component';
 
 interface CreateInvoiceRequest {
   orderId: string;
@@ -22,10 +23,10 @@ interface InvoiceDownload {
 @Component({
   selector: 'app-invoices',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, PageComponent],
   template: `
+    <app-page heading="Invoices">
     <div data-testid="invoices-screen">
-      <h1>Invoices</h1>
 
       <section data-testid="invoice-generate-form">
         <h2>Generate invoice</h2>
@@ -90,6 +91,7 @@ interface InvoiceDownload {
         }
       </section>
     </div>
+    </app-page>
   `,
 })
 export class InvoicesComponent {

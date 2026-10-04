@@ -2,7 +2,6 @@ import { Routes } from '@angular/router';
 import { FEATURE_ROUTES } from './features/index';
 
 export const routes: Routes = [
-  ...FEATURE_ROUTES,
   {
     path: '',
     loadComponent: () => import('./landing/landing.component').then(m => m.LandingComponent),
@@ -75,6 +74,8 @@ export const routes: Routes = [
         path: 'admin/app-settings',
         loadComponent: () => import('./admin/admin.component').then(m => m.AdminComponent)
       },
+      // Story feature pages render inside the shared sidebar + top-bar shell.
+      ...FEATURE_ROUTES,
     ]
   },
   {

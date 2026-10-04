@@ -2,14 +2,15 @@ import { Component, inject, signal, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ApiClient, ForbiddenError } from '../../shared/api/api-client';
 import { AuditEntry } from './audit-entry.types';
+import { PageComponent } from '../../shared/layout/page.component';
 
 @Component({
   selector: 'app-admin-audit-log',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, PageComponent],
   template: `
+    <app-page heading="Audit Log">
     <div data-testid="admin-audit-log-screen">
-      <h1>Audit Log</h1>
       <ul data-testid="audit-log-help">
         <li>Viewing the log: a list of AuditEntry records is displayed in chronological order returns 200.</li>
         <li>Recording actions: the AuditEntry is stored and returns 201 with the created record.</li>
@@ -48,6 +49,7 @@ import { AuditEntry } from './audit-entry.types';
         }
       }
     </div>
+    </app-page>
   `,
 })
 export class AdminAuditLogComponent implements OnInit {

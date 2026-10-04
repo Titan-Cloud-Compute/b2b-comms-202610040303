@@ -1,42 +1,8 @@
 @import './styles/tokens.css';
+@import './styles/page.css';
 
-/* Colour + typography tokens live ONLY in styles/tokens.css (imported above). */
-
-/* ── Style-token extension (U2.8 codemod) ───────────────────────────────────
- * Declares font-size scale, missing radius/shadow tokens, and --imp-h so that
- * all component files can reference tokens only (no raw literals).            */
-:root {
-  --imp-h: 0px;
-
-  /* Font-size scale */
-  --font-size-xs: 0.75rem;    /* 12px – smallest labels / tags */
-  --font-size-sm: 0.875rem;   /* 14px – secondary text, buttons */
-  --font-size-md: 0.9375rem;  /* 15px – comfortable body text */
-  --font-size-lg: 1.125rem;   /* 18px – section headings */
-  --font-size-xl: 1.5rem;     /* 24px – page headings */
-  --font-size-2xl: 2rem;      /* 32px – hero headings */
-  --font-size-input: 16px;    /* iOS-zoom-safe input size */
-
-  /* Radius tokens not covered by tokens.css */
-  --radius-xs: 4px;
-  --radius-btn: 8px;
-  --radius-card: 12px;
-
-  /* Shadow tokens not covered by tokens.css */
-  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.1);
-  --shadow-popup: 0 8px 24px rgba(0, 0, 0, 0.12);
-  --shadow-modal: 0 10px 40px rgba(0, 0, 0, 0.2);
-  --shadow-drawer: -4px 0 24px rgba(0, 0, 0, 0.2);
-  --shadow-nav: 0 1px 3px rgba(14, 23, 38, 0.08);
-  --shadow-header: 0 -1px 3px rgba(14, 23, 38, 0.08);
-  --shadow-sidebar: 1px 0 3px rgba(14, 23, 38, 0.05);
-  --shadow-hover: 0 4px 14px rgba(0, 0, 0, 0.08);
-  --shadow-hover-lg: 0 6px 16px rgba(0, 0, 0, 0.12);
-  --shadow-focus: 0 0 0 3px rgba(var(--color-primary-rgb), 0.15);
-
-  /* Radius for circular elements (avatars, spinners) */
-  --radius-circle: 50%;
-}
+/* Colour, typography, spacing, radius and shadow tokens live ONLY in
+ * styles/tokens.css (imported above). Page primitives live in styles/page.css. */
 
 /* Global Reset & Base Styles */
 *,
@@ -202,7 +168,7 @@ html {
   line-height: 1.35;
   white-space: normal;
   text-align: center;
-  box-shadow: 0 4px 14px rgba(14, 23, 38, 0.22);
+  box-shadow: var(--shadow-toast);
   opacity: 0;
   visibility: hidden;
   pointer-events: none;

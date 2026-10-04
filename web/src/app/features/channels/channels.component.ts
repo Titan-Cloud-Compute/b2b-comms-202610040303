@@ -3,14 +3,15 @@ import { FormsModule } from '@angular/forms';
 import { ApiClient, MockApiClient } from '../../shared/api/api-client';
 import { registerChannelMocks, registerChannelMessageMock } from './channels.mocks';
 import type { Channel, Message } from './channels.mocks';
+import { PageComponent } from '../../shared/layout/page.component';
 
 @Component({
   selector: 'app-channels',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, PageComponent],
   template: `
+    <app-page heading="Shared channels">
     <div data-testid="channels-screen">
-      <h1>Shared channels</h1>
 
       @if (error()) {
         <p role="alert">{{ error() }}</p>
@@ -53,6 +54,7 @@ import type { Channel, Message } from './channels.mocks';
         <div data-testid="last-message">{{ lastMessage()!.body }}</div>
       }
     </div>
+    </app-page>
   `,
 })
 export class ChannelsComponent implements OnInit {

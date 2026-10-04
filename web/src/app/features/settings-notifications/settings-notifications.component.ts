@@ -1,14 +1,15 @@
 import { Component, inject, signal, OnInit } from '@angular/core';
 import { ApiClient } from '../../shared/api/api-client';
 import { NotificationPreferences } from './notification-preferences.types';
+import { PageComponent } from '../../shared/layout/page.component';
 
 @Component({
   selector: 'app-settings-notifications',
   standalone: true,
-  imports: [],
+  imports: [PageComponent],
   template: `
+    <app-page heading="Notification Settings">
     <div data-testid="settings-notifications-screen">
-      <h1>Notification Settings</h1>
 
       @if (loading()) {
         <p>Loading preferences…</p>
@@ -60,6 +61,7 @@ import { NotificationPreferences } from './notification-preferences.types';
         <li>Turning everything off: the preferences are updated with both alert fields stored as false.</li>
       </ul>
     </div>
+    </app-page>
   `,
 })
 export class SettingsNotificationsComponent implements OnInit {

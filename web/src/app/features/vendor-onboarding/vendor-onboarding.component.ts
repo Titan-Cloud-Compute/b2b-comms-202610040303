@@ -3,14 +3,15 @@ import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ApiClient } from '../../shared/api/api-client';
 import type { VendorProfileResponse, VendorDocument } from './vendor-onboarding.types';
+import { PageComponent } from '../../shared/layout/page.component';
 
 @Component({
   selector: 'app-vendor-onboarding',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, PageComponent],
   template: `
+    <app-page heading="Vendor Profile">
     <div data-testid="vendor-profile-screen">
-      <h1>Vendor Profile</h1>
 
       <section>
         <h2>Company profile</h2>
@@ -35,7 +36,7 @@ import type { VendorProfileResponse, VendorDocument } from './vendor-onboarding.
           </div>
           <button type="submit" data-testid="vendor-profile-submit">Save profile</button>
         </form>
-        <p *ngIf="profileError" style="color: var(--color-error, #c0392b)">{{ profileError }}</p>
+        <p *ngIf="profileError" style="color: var(--color-error)">{{ profileError }}</p>
         <p *ngIf="profileSuccess">Profile saved successfully.</p>
         <p>the profile is stored and returns 201 with the created VendorProfile record</p>
       </section>
@@ -55,7 +56,7 @@ import type { VendorProfileResponse, VendorDocument } from './vendor-onboarding.
               (click)="uploadDocument()"
             >Upload document</button>
           </div>
-          <p *ngIf="documentError" style="color: var(--color-error, #c0392b)">{{ documentError }}</p>
+          <p *ngIf="documentError" style="color: var(--color-error)">{{ documentError }}</p>
           <p>the document is stored with status "pending" and displays in the vendor document library</p>
           <ul *ngIf="documents.length > 0">
             <li *ngFor="let doc of documents">
@@ -67,14 +68,15 @@ import type { VendorProfileResponse, VendorDocument } from './vendor-onboarding.
         </div>
       </section>
     </div>
+    </app-page>
   `,
   styles: [`
     .status-badge {
       display: inline-block;
       padding: 2px 8px;
       border-radius: 4px;
-      background-color: var(--color-badge-bg, #e8f5e9);
-      color: var(--color-badge-text, #2e7d32);
+      background-color: var(--color-success-bg);
+      color: var(--color-success);
       font-size: 0.85em;
       margin-left: 8px;
     }

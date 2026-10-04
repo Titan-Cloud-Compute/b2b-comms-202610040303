@@ -13,7 +13,7 @@ export const accountModalStyles = `
       left: 0;
       right: 0;
       bottom: 0;
-      background: rgba(0, 0, 0, 0.4);
+      background: var(--color-overlay-soft);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -22,7 +22,7 @@ export const accountModalStyles = `
     }
 
     .account-modal {
-      background: white;
+      background: var(--color-surface);
       border-radius: var(--radius-lg);
       width: 100%;
       max-width: 1200px;
@@ -102,7 +102,7 @@ export const accountModalStyles = `
 
     .settings-nav-item.active {
       background: var(--color-primary);
-      color: white;
+      color: var(--color-on-primary);
     }
 
     .settings-content {
@@ -166,7 +166,7 @@ export const accountModalStyles = `
       border-radius: var(--radius-btn);
       min-height: 44px;
       box-sizing: border-box;
-      background: white;
+      background: var(--color-surface);
       color: var(--color-text-primary);
     }
 
@@ -206,7 +206,7 @@ export const accountModalStyles = `
       gap: 0.5rem;
       padding: 0.625rem 1rem;
       background: var(--color-primary);
-      color: white;
+      color: var(--color-on-primary);
       border: none;
       border-radius: var(--radius-btn);
       font-size: var(--font-size-sm);
@@ -315,7 +315,7 @@ export const accountModalStyles = `
       align-items: center;
       gap: 0.5rem;
       padding: 0.5rem 0.875rem;
-      background: white;
+      background: var(--color-surface);
       color: var(--color-primary);
       border: 1px solid var(--color-on-primary-muted);
       border-radius: var(--radius-btn);

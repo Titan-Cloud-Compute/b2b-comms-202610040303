@@ -2,6 +2,7 @@ import { Component, OnInit, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ApiClient, ForbiddenError, ConflictError } from '../../shared/api/api-client';
 import { OrderItemInput, OrderSummary } from './order.types';
+import { PageComponent } from '../../shared/layout/page.component';
 
 interface LineItemForm {
   description: string;
@@ -12,10 +13,10 @@ interface LineItemForm {
 @Component({
   selector: 'app-orders',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, PageComponent],
   template: `
+    <app-page heading="Orders">
     <div data-testid="orders-screen">
-      <h1>Orders</h1>
 
       <section>
         <h2>Place a purchase order</h2>
@@ -124,6 +125,7 @@ interface LineItemForm {
         <li>Vendor confirmation: the order is updated to status "confirmed" and displays to the customer as confirmed.</li>
       </ul>
     </div>
+    </app-page>
   `,
 })
 export class OrdersComponent implements OnInit {

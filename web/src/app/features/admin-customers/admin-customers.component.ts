@@ -3,14 +3,15 @@ import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angula
 import { CommonModule } from '@angular/common';
 import { ApiClient, ConflictError, BadRequestError } from '../../shared/api/api-client';
 import type { InviteCustomerResponse, CustomerListItem } from './customer-invite.types';
+import { PageComponent } from '../../shared/layout/page.component';
 
 @Component({
   selector: 'app-admin-customers',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, PageComponent],
   template: `
+    <app-page heading="Customer Management">
     <div data-testid="admin-customers-screen">
-      <h1>Customer Management</h1>
 
       <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <label for="invite-email">Customer email</label>
@@ -51,6 +52,7 @@ import type { InviteCustomerResponse, CustomerListItem } from './customer-invite
         </ul>
       </div>
     </div>
+    </app-page>
   `,
 })
 export class AdminCustomersComponent implements OnInit {

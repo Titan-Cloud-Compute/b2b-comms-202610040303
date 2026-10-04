@@ -1,0 +1,356 @@
+/* Page primitives — the shared visual system for every routed page.
+ * Values come ONLY from tokens.css (var(--…)); no raw colour literals here.
+ * <app-page> (shared/layout/page.component.ts) renders .page / .page-header /
+ * .page-body; content projected into it picks up the card, table, form,
+ * button, alert and empty-state primitives below without per-page CSS. */
+
+.page {
+  width: 100%;
+  max-width: var(--page-max-width);
+  margin: 0 auto;
+  padding: var(--page-gutter);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.page-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.page-header h1 {
+  font-family: var(--font-display);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-tight);
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.page-subtitle {
+  margin-top: var(--space-1);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.page-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.page-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  min-width: 0;
+  color: var(--color-text-primary);
+  font-size: var(--font-size-md);
+}
+
+.page-body > * {
+  min-width: 0;
+}
+
+.page-body > div,
+.page-body > div > div:not([data-testid^="line-item-row"]) {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  min-width: 0;
+}
+
+/* Cards: sections, forms and lists sit on a token surface. */
+.card,
+.page-body section,
+.page-body form,
+.page-body ul,
+.page-body fieldset {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-sm);
+  padding: var(--space-5);
+  margin: 0;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.page-body section form,
+.page-body section ul,
+.page-body form fieldset,
+.page-body section fieldset {
+  box-shadow: none;
+  background: var(--color-bg-secondary);
+  padding: var(--space-4);
+}
+
+.page-body section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.page-body h2 {
+  font-family: var(--font-display);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.page-body h3 {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+  margin: 0;
+}
+
+.page-body p {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-base);
+}
+
+.page-body legend {
+  padding: 0 var(--space-2);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-secondary);
+}
+
+/* Lists (e.g. ChannelList) */
+.page-body ul {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.page-body li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+}
+
+/* Forms */
+.page-body form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.page-body form > div,
+.page-body fieldset > div {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.page-body label {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+}
+
+.page-body input:not([type="checkbox"]):not([type="radio"]):not([type="file"]),
+.page-body select,
+.page-body textarea {
+  min-height: var(--control-height);
+  max-width: 100%;
+  min-width: 0;
+  padding: var(--space-2) var(--space-3);
+  font-family: var(--font-body);
+  font-size: var(--font-size-input);
+  color: var(--color-text-primary);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-btn);
+  box-sizing: border-box;
+}
+
+.page-body textarea {
+  width: 100%;
+  min-height: calc(var(--control-height) * 2);
+  resize: vertical;
+}
+
+.page-body input:focus,
+.page-body select:focus,
+.page-body textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-focus);
+}
+
+.page-body input[type="checkbox"],
+.page-body input[type="radio"] {
+  accent-color: var(--color-primary);
+}
+
+/* Buttons */
+.btn,
+.page-body button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: var(--control-height);
+  padding: var(--space-2) var(--space-4);
+  font-family: var(--font-body);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-on-primary);
+  background: var(--color-primary);
+  border: 1px solid var(--color-primary);
+  border-radius: var(--radius-btn);
+  cursor: pointer;
+  max-width: 100%;
+}
+
+.btn:hover,
+.page-body button:hover:not(:disabled) {
+  background: var(--color-primary-hover);
+  border-color: var(--color-primary-hover);
+}
+
+.page-body button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.page-body li > button,
+.page-body button[type="button"],
+.btn-secondary {
+  color: var(--color-primary);
+  background: var(--color-surface);
+  border-color: var(--color-border);
+}
+
+.page-body li > button:hover:not(:disabled),
+.page-body button[type="button"]:hover:not(:disabled),
+.btn-secondary:hover {
+  color: var(--color-primary);
+  background: var(--color-primary-light);
+  border-color: var(--color-primary-border);
+}
+
+.page-body button[aria-pressed="true"] {
+  color: var(--color-on-primary);
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.page-body form > button[type="submit"] {
+  align-self: flex-start;
+}
+
+/* Tables scroll horizontally inside their card instead of overflowing the page. */
+.page-body table {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  font-size: var(--font-size-sm);
+}
+
+.page-body th,
+.page-body td {
+  padding: var(--space-3) var(--space-4);
+  text-align: left;
+  border-bottom: 1px solid var(--color-border-light);
+  white-space: nowrap;
+}
+
+.page-body th {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text-secondary);
+  background: var(--color-bg-secondary);
+}
+
+.page-body tr:last-child td {
+  border-bottom: none;
+}
+
+/* Alerts + status */
+.page-body [role="alert"] {
+  padding: var(--space-3) var(--space-4);
+  color: var(--color-error);
+  background: var(--color-error-bg);
+  border: 1px solid var(--color-error-200);
+  border-radius: var(--radius-btn);
+  font-size: var(--font-size-sm);
+}
+
+.page-body [role="status"] {
+  padding: var(--space-3) var(--space-4);
+  color: var(--color-success);
+  background: var(--color-success-bg);
+  border: 1px solid var(--color-success-200);
+  border-radius: var(--radius-btn);
+  font-size: var(--font-size-sm);
+}
+
+.empty-state {
+  padding: var(--space-8) var(--space-4);
+  text-align: center;
+  color: var(--color-text-tertiary);
+  font-size: var(--font-size-sm);
+}
+
+.page-body a {
+  color: var(--color-primary);
+  font-weight: var(--font-weight-medium);
+}
+
+.page-body a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .page {
+    padding: var(--page-gutter-mobile);
+    gap: var(--space-4);
+  }
+
+  .page-header {
+    align-items: flex-start;
+  }
+
+  .card,
+  .page-body section,
+  .page-body form,
+  .page-body ul,
+  .page-body fieldset {
+    padding: var(--space-4);
+  }
+
+  .page-body form > div,
+  .page-body fieldset > div {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .page-body input:not([type="checkbox"]):not([type="radio"]):not([type="file"]),
+  .page-body select,
+  .page-body form > button[type="submit"] {
+    width: 100%;
+  }
+}

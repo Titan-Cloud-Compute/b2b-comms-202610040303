@@ -135,3 +135,70 @@
   --chat-header-bg: linear-gradient(180deg, var(--color-primary-light), var(--color-surface));
   --chat-composer-bg: var(--color-bg-secondary);
 }
+
+/* ---- Scale tokens (moved from styles.css; styling card 2026-10-04) ----
+   Font-size, radius, shadow, spacing and layout tokens. Every component reads these via var(). */
+:root {
+  --imp-h: 0px;
+
+  /* Font-size scale */
+  --font-size-xs: 0.75rem;    /* 12px – smallest labels / tags */
+  --font-size-sm: 0.875rem;   /* 14px – secondary text, buttons */
+  --font-size-md: 0.9375rem;  /* 15px – comfortable body text */
+  --font-size-lg: 1.125rem;   /* 18px – section headings */
+  --font-size-xl: 1.5rem;     /* 24px – page headings */
+  --font-size-2xl: 2rem;      /* 32px – hero headings */
+  --font-size-input: 16px;    /* iOS-zoom-safe input size */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --line-height-tight: 1.25;
+  --line-height-base: 1.5;
+
+  /* Spacing scale (4px base) */
+  --space-0: 0;
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+
+  /* Layout */
+  --page-max-width: 1200px;
+  --page-gutter: var(--space-6);
+  --page-gutter-mobile: var(--space-4);
+  --control-height: 40px;
+  --breakpoint-mobile: 768px; /* reference only — media queries cannot read vars */
+
+  /* Radius tokens */
+  --radius-xs: 4px;
+  --radius-btn: 8px;
+  --radius-card: 12px;
+  --radius-circle: 50%;
+
+  /* Overlays + on-primary alpha tints */
+  --color-overlay: rgba(14, 23, 38, 0.45);
+  --color-overlay-strong: rgba(0, 0, 0, 0.5);
+  --color-overlay-soft: rgba(0, 0, 0, 0.4);
+  --color-on-primary-alpha-10: rgba(255, 255, 255, 0.1);
+  --color-on-primary-alpha-20: rgba(255, 255, 255, 0.2);
+  --color-on-primary-alpha-70: rgba(255, 255, 255, 0.7);
+
+  /* Shadow tokens */
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --shadow-popup: 0 8px 24px rgba(0, 0, 0, 0.12);
+  --shadow-modal: 0 10px 40px rgba(0, 0, 0, 0.2);
+  --shadow-drawer: -4px 0 24px rgba(0, 0, 0, 0.2);
+  --shadow-nav: 0 1px 3px rgba(14, 23, 38, 0.08);
+  --shadow-header: 0 -1px 3px rgba(14, 23, 38, 0.08);
+  --shadow-sidebar: 1px 0 3px rgba(14, 23, 38, 0.05);
+  --shadow-hover: 0 4px 14px rgba(0, 0, 0, 0.08);
+  --shadow-hover-lg: 0 6px 16px rgba(0, 0, 0, 0.12);
+  --shadow-toast: 0 4px 14px rgba(14, 23, 38, 0.22);
+  --shadow-focus: 0 0 0 3px rgba(var(--color-primary-rgb), 0.15);
+}
