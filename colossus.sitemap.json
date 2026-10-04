@@ -1,0 +1,508 @@
+{
+  "back_end": {
+    "api": [
+      {
+        "method": "GET",
+        "path": "/api/admin/audit-log",
+        "story": "audit-log"
+      },
+      {
+        "method": "GET",
+        "path": "/api/admin/customers",
+        "story": "customer-invite"
+      },
+      {
+        "method": "GET",
+        "path": "/api/channels",
+        "story": "shared-channel"
+      },
+      {
+        "method": "GET",
+        "path": "/api/invoices/:id/download",
+        "story": "invoice-generation"
+      },
+      {
+        "method": "GET",
+        "path": "/api/notifications/preferences",
+        "story": "notification-preferences"
+      },
+      {
+        "method": "GET",
+        "path": "/api/orders",
+        "story": "order-management"
+      },
+      {
+        "method": "GET",
+        "path": "/api/vendor/documents",
+        "story": "vendor-onboarding"
+      },
+      {
+        "method": "PATCH",
+        "path": "/api/orders/:id/confirm",
+        "story": "order-management"
+      },
+      {
+        "method": "POST",
+        "path": "/api/admin/audit-log",
+        "story": "audit-log"
+      },
+      {
+        "method": "POST",
+        "path": "/api/admin/customers/invite",
+        "story": "customer-invite"
+      },
+      {
+        "method": "POST",
+        "path": "/api/channels",
+        "story": "shared-channel"
+      },
+      {
+        "method": "POST",
+        "path": "/api/channels/:id/messages",
+        "story": "shared-channel"
+      },
+      {
+        "method": "POST",
+        "path": "/api/invoices",
+        "story": "invoice-generation"
+      },
+      {
+        "method": "POST",
+        "path": "/api/orders",
+        "story": "order-management"
+      },
+      {
+        "method": "POST",
+        "path": "/api/vendor/documents",
+        "story": "vendor-onboarding"
+      },
+      {
+        "method": "POST",
+        "path": "/api/vendor/profile",
+        "story": "vendor-onboarding"
+      },
+      {
+        "method": "PUT",
+        "path": "/api/notifications/preferences",
+        "story": "notification-preferences"
+      }
+    ]
+  },
+  "database": {
+    "relations": [
+      {
+        "cardinality": "many-to-one",
+        "from": "Channel",
+        "id": "Channel||VendorProfile|many-to-one",
+        "source": "spec",
+        "to": "VendorProfile"
+      },
+      {
+        "cardinality": "many-to-one",
+        "from": "Customer",
+        "id": "Customer||User|many-to-one",
+        "source": "spec",
+        "to": "User"
+      },
+      {
+        "cardinality": "many-to-one",
+        "from": "Document",
+        "id": "Document||VendorProfile|many-to-one",
+        "source": "spec",
+        "to": "VendorProfile"
+      },
+      {
+        "cardinality": "many-to-one",
+        "from": "Invoice",
+        "id": "Invoice||Order|many-to-one",
+        "source": "spec",
+        "to": "Order"
+      },
+      {
+        "cardinality": "many-to-one",
+        "from": "Message",
+        "id": "Message||Channel|many-to-one",
+        "source": "spec",
+        "to": "Channel"
+      },
+      {
+        "cardinality": "many-to-one",
+        "from": "NotificationPreference",
+        "id": "NotificationPreference||User|many-to-one",
+        "source": "spec",
+        "to": "User"
+      },
+      {
+        "cardinality": "many-to-one",
+        "from": "OrderItem",
+        "id": "OrderItem||Order|many-to-one",
+        "source": "spec",
+        "to": "Order"
+      },
+      {
+        "cardinality": "many-to-one",
+        "from": "Order",
+        "id": "Order||Customer|many-to-one",
+        "source": "spec",
+        "to": "Customer"
+      },
+      {
+        "cardinality": "many-to-one",
+        "from": "VendorProfile",
+        "id": "VendorProfile||User|many-to-one",
+        "source": "spec",
+        "to": "User"
+      }
+    ],
+    "tables": [
+      {
+        "fields": [
+          {
+            "name": "id"
+          },
+          {
+            "name": "action"
+          },
+          {
+            "name": "userId"
+          },
+          {
+            "name": "createdAt"
+          }
+        ],
+        "name": "AuditEntry"
+      },
+      {
+        "fields": [
+          {
+            "name": "id"
+          },
+          {
+            "name": "name"
+          },
+          {
+            "name": "vendorId"
+          }
+        ],
+        "name": "Channel"
+      },
+      {
+        "fields": [
+          {
+            "name": "id"
+          },
+          {
+            "name": "email"
+          },
+          {
+            "name": "userId"
+          }
+        ],
+        "name": "Customer"
+      },
+      {
+        "fields": [
+          {
+            "name": "id"
+          },
+          {
+            "name": "filename"
+          },
+          {
+            "name": "status"
+          },
+          {
+            "name": "vendorProfileId"
+          }
+        ],
+        "name": "Document"
+      },
+      {
+        "fields": [
+          {
+            "name": "id"
+          },
+          {
+            "name": "amount"
+          },
+          {
+            "name": "orderId"
+          }
+        ],
+        "name": "Invoice"
+      },
+      {
+        "fields": [
+          {
+            "name": "id"
+          },
+          {
+            "name": "body"
+          },
+          {
+            "name": "channelId"
+          },
+          {
+            "name": "senderId"
+          }
+        ],
+        "name": "Message"
+      },
+      {
+        "fields": [
+          {
+            "name": "id"
+          },
+          {
+            "name": "userId"
+          },
+          {
+            "name": "orderAlerts"
+          },
+          {
+            "name": "messageAlerts"
+          }
+        ],
+        "name": "NotificationPreference"
+      },
+      {
+        "fields": [
+          {
+            "name": "id"
+          },
+          {
+            "name": "status"
+          },
+          {
+            "name": "customerId"
+          },
+          {
+            "name": "vendorId"
+          }
+        ],
+        "name": "Order"
+      },
+      {
+        "fields": [
+          {
+            "name": "id"
+          },
+          {
+            "name": "description"
+          },
+          {
+            "name": "quantity"
+          },
+          {
+            "name": "unitPrice"
+          },
+          {
+            "name": "orderId"
+          }
+        ],
+        "name": "OrderItem"
+      },
+      {
+        "fields": [
+          {
+            "name": "id"
+          },
+          {
+            "name": "email"
+          },
+          {
+            "name": "role"
+          },
+          {
+            "name": "createdAt"
+          }
+        ],
+        "name": "User"
+      },
+      {
+        "fields": [
+          {
+            "name": "id"
+          },
+          {
+            "name": "companyName"
+          },
+          {
+            "name": "contactEmail"
+          },
+          {
+            "name": "userId"
+          }
+        ],
+        "name": "VendorProfile"
+      }
+    ]
+  },
+  "front_end": {
+    "pages": [
+      {
+        "api": [
+          {
+            "method": "GET",
+            "path": "/api/admin/audit-log",
+            "story": "audit-log"
+          },
+          {
+            "method": "POST",
+            "path": "/api/admin/audit-log",
+            "story": "audit-log"
+          }
+        ],
+        "name": "Audit Log",
+        "nav": true,
+        "page_id": "admin-audit-log",
+        "source": "web/src/app/features/admin-audit-log/admin-audit-log.component.ts",
+        "story": "audit-log",
+        "url": "/admin/audit-log"
+      },
+      {
+        "api": [
+          {
+            "method": "POST",
+            "path": "/api/admin/customers/invite",
+            "story": "customer-invite"
+          },
+          {
+            "method": "GET",
+            "path": "/api/admin/customers",
+            "story": "customer-invite"
+          }
+        ],
+        "name": "Customer Management",
+        "nav": true,
+        "page_id": "admin-customers",
+        "source": "web/src/app/features/admin-customers/admin-customers.component.ts",
+        "story": "customer-invite",
+        "url": "/admin/customers"
+      },
+      {
+        "api": [
+          {
+            "method": "POST",
+            "path": "/api/channels",
+            "story": "shared-channel"
+          },
+          {
+            "method": "POST",
+            "path": "/api/channels/:id/messages",
+            "story": "shared-channel"
+          },
+          {
+            "method": "GET",
+            "path": "/api/channels",
+            "story": "shared-channel"
+          }
+        ],
+        "name": "Channels",
+        "nav": true,
+        "page_id": "channels",
+        "source": "web/src/app/features/channels/channels.component.ts",
+        "story": "shared-channel",
+        "url": "/channels"
+      },
+      {
+        "api": [
+          {
+            "method": "POST",
+            "path": "/api/invoices",
+            "story": "invoice-generation"
+          },
+          {
+            "method": "GET",
+            "path": "/api/invoices/:id/download",
+            "story": "invoice-generation"
+          }
+        ],
+        "name": "Invoices",
+        "nav": true,
+        "page_id": "invoices",
+        "source": "web/src/app/features/invoices/invoices.component.ts",
+        "story": "invoice-generation",
+        "url": "/invoices"
+      },
+      {
+        "api": [
+          {
+            "method": "POST",
+            "path": "/api/orders",
+            "story": "order-management"
+          },
+          {
+            "method": "PATCH",
+            "path": "/api/orders/:id/confirm",
+            "story": "order-management"
+          },
+          {
+            "method": "GET",
+            "path": "/api/orders",
+            "story": "order-management"
+          }
+        ],
+        "name": "Orders",
+        "nav": true,
+        "page_id": "orders",
+        "source": "web/src/app/features/orders/orders.component.ts",
+        "story": "order-management",
+        "url": "/orders"
+      },
+      {
+        "api": [
+          {
+            "method": "PUT",
+            "path": "/api/notifications/preferences",
+            "story": "notification-preferences"
+          },
+          {
+            "method": "GET",
+            "path": "/api/notifications/preferences",
+            "story": "notification-preferences"
+          }
+        ],
+        "name": "Notification Settings",
+        "nav": true,
+        "page_id": "settings-notifications",
+        "source": "web/src/app/features/settings-notifications/settings-notifications.component.ts",
+        "story": "notification-preferences",
+        "url": "/settings/notifications"
+      },
+      {
+        "api": [
+          {
+            "method": "POST",
+            "path": "/api/vendor/profile",
+            "story": "vendor-onboarding"
+          },
+          {
+            "method": "POST",
+            "path": "/api/vendor/documents",
+            "story": "vendor-onboarding"
+          },
+          {
+            "method": "GET",
+            "path": "/api/vendor/documents",
+            "story": "vendor-onboarding"
+          }
+        ],
+        "name": "Vendor Profile",
+        "nav": true,
+        "page_id": "vendor-profile",
+        "source": "web/src/app/features/vendor-profile/vendor-profile.component.ts",
+        "story": "vendor-onboarding",
+        "url": "/vendor/profile"
+      }
+    ]
+  },
+  "meta": {
+    "generated_by": "spec-scaffold"
+  },
+  "site": {
+    "description": "B2B communication platform enabling vendors and customers to manage onboarding, shared channels, orders, invoices, and notifications.",
+    "name": "Vendor and Customer Workspace Portal",
+    "site_id": "vendor_and_customer_workspace_portal"
+  }
+}

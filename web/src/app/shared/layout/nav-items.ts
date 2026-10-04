@@ -48,3 +48,14 @@ export const ADMIN_TAB_MAP: Record<string, string> = {
   'Users': 'users',
   'App Settings': 'app-settings',
 };
+// <<codegen:nav-items:start>>
+FIRM_NAV_ITEMS.push(
+  { path: '/vendor/profile', label: 'Vendor Profile', icon: '' },
+  { path: '/admin/customers', label: 'Customer Management', icon: '' },
+  { path: '/channels', label: 'Channels', icon: '' },
+  { path: '/orders', label: 'Orders', icon: '' },
+  { path: '/invoices', label: 'Invoices', icon: '' },
+  { path: '/settings/notifications', label: 'Notification Settings', icon: '' },
+  { path: '/admin/audit-log', label: 'Audit Log', icon: '' },
+);
+// <<codegen:nav-items:end>>

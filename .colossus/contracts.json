@@ -1,0 +1,206 @@
+{
+  "version": 1,
+  "spec_version": 4,
+  "entities": {
+    "User": {
+      "owner": "customer-invite",
+      "writers": [
+        "customer-invite"
+      ]
+    },
+    "VendorProfile": {
+      "owner": "vendor-onboarding",
+      "writers": [
+        "vendor-onboarding"
+      ]
+    },
+    "Customer": {
+      "owner": "customer-invite",
+      "writers": [
+        "customer-invite"
+      ]
+    },
+    "Document": {
+      "owner": "vendor-onboarding",
+      "writers": [
+        "vendor-onboarding"
+      ]
+    },
+    "Channel": {
+      "owner": "shared-channel",
+      "writers": [
+        "shared-channel"
+      ]
+    },
+    "Message": {
+      "owner": "shared-channel",
+      "writers": [
+        "shared-channel"
+      ]
+    },
+    "Order": {
+      "owner": "order-management",
+      "writers": [
+        "order-management"
+      ]
+    },
+    "OrderItem": {
+      "owner": "order-management",
+      "writers": [
+        "order-management"
+      ]
+    },
+    "Invoice": {
+      "owner": "invoice-generation",
+      "writers": [
+        "invoice-generation"
+      ]
+    },
+    "NotificationPreference": {
+      "owner": "notification-preferences",
+      "writers": [
+        "notification-preferences"
+      ]
+    },
+    "AuditEntry": {
+      "owner": "audit-log",
+      "writers": [
+        "audit-log"
+      ]
+    }
+  },
+  "endpoints": [
+    {
+      "method": "POST",
+      "path": "/api/vendor/profile",
+      "mode": "exposes",
+      "story": "vendor-onboarding"
+    },
+    {
+      "method": "POST",
+      "path": "/api/vendor/documents",
+      "mode": "exposes",
+      "story": "vendor-onboarding"
+    },
+    {
+      "method": "GET",
+      "path": "/api/vendor/documents",
+      "mode": "exposes",
+      "story": "vendor-onboarding"
+    },
+    {
+      "method": "POST",
+      "path": "/api/admin/customers/invite",
+      "mode": "exposes",
+      "story": "customer-invite"
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/customers",
+      "mode": "exposes",
+      "story": "customer-invite"
+    },
+    {
+      "method": "POST",
+      "path": "/api/channels",
+      "mode": "exposes",
+      "story": "shared-channel"
+    },
+    {
+      "method": "POST",
+      "path": "/api/channels/:id/messages",
+      "mode": "exposes",
+      "story": "shared-channel"
+    },
+    {
+      "method": "GET",
+      "path": "/api/channels",
+      "mode": "exposes",
+      "story": "shared-channel"
+    },
+    {
+      "method": "POST",
+      "path": "/api/orders",
+      "mode": "exposes",
+      "story": "order-management"
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/orders/:id/confirm",
+      "mode": "exposes",
+      "story": "order-management"
+    },
+    {
+      "method": "GET",
+      "path": "/api/orders",
+      "mode": "exposes",
+      "story": "order-management"
+    },
+    {
+      "method": "POST",
+      "path": "/api/invoices",
+      "mode": "exposes",
+      "story": "invoice-generation"
+    },
+    {
+      "method": "GET",
+      "path": "/api/invoices/:id/download",
+      "mode": "exposes",
+      "story": "invoice-generation"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/notifications/preferences",
+      "mode": "exposes",
+      "story": "notification-preferences"
+    },
+    {
+      "method": "GET",
+      "path": "/api/notifications/preferences",
+      "mode": "exposes",
+      "story": "notification-preferences"
+    },
+    {
+      "method": "GET",
+      "path": "/api/admin/audit-log",
+      "mode": "exposes",
+      "story": "audit-log"
+    },
+    {
+      "method": "POST",
+      "path": "/api/admin/audit-log",
+      "mode": "exposes",
+      "story": "audit-log"
+    }
+  ],
+  "routes": [
+    {
+      "path": "/vendor/profile",
+      "story": "vendor-onboarding"
+    },
+    {
+      "path": "/admin/customers",
+      "story": "customer-invite"
+    },
+    {
+      "path": "/channels",
+      "story": "shared-channel"
+    },
+    {
+      "path": "/orders",
+      "story": "order-management"
+    },
+    {
+      "path": "/invoices",
+      "story": "invoice-generation"
+    },
+    {
+      "path": "/settings/notifications",
+      "story": "notification-preferences"
+    },
+    {
+      "path": "/admin/audit-log",
+      "story": "audit-log"
+    }
+  ]
+}

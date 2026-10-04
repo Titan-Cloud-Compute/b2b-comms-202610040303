@@ -5,7 +5,9 @@
     "roles": [
       "ADMIN",
       "MANAGER",
-      "USER"
+      "USER",
+      "VENDOR",
+      "CUSTOMER"
     ]
   },
   "certified": true,

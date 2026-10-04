@@ -22,6 +22,8 @@ enum UserRole {
   ADMIN
   MANAGER
   USER
+  VENDOR
+  CUSTOMER
 }
 
 enum AuditActor {
@@ -53,6 +55,11 @@ model User {
   tokensCreated  RegistrationToken[] @relation("CreatedTokens")
   tokensConsumed RegistrationToken[] @relation("ConsumedTokens")
   passwordResetTokens PasswordResetToken[]
+  // spec-schema-gen:backrefs:begin
+  vendorProfile  VendorProfile?
+  customer  Customer?
+  notificationPreference  NotificationPreference?
+  // spec-schema-gen:backrefs:end
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -137,3 +144,126 @@ model ColossusAccount {
 
   @@map("colossus_accounts")
 }
+
+// spec-schema-gen:begin
+model VendorProfile {
+  id  String  @id @default(cuid())
+  companyName  String
+  contactEmail  String
+  userId  String @unique
+  user  User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  documents  Document[]
+  channels  Channel[]
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+
+  @@index([userId])
+}
+
+model Customer {
+  id  String  @id @default(cuid())
+  email  String @unique
+  userId  String @unique
+  user  User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  orders  Order[]
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+
+  @@index([userId])
+}
+
+model Document {
+  id  String  @id @default(cuid())
+  filename  String
+  status  String
+  vendorProfileId  String
+  vendorProfile  VendorProfile  @relation(fields: [vendorProfileId], references: [id], onDelete: Cascade)
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+
+  @@index([vendorProfileId])
+}
+
+model Channel {
+  id  String  @id @default(cuid())
+  name  String
+  vendorId  String
+  vendorProfileId  String
+  vendorProfile  VendorProfile  @relation(fields: [vendorProfileId], references: [id], onDelete: Cascade)
+  messages  Message[]
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+
+  @@index([vendorProfileId])
+}
+
+model Message {
+  id  String  @id @default(cuid())
+  body  String
+  channelId  String
+  senderId  String
+  channel  Channel  @relation(fields: [channelId], references: [id], onDelete: Cascade)
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+
+  @@index([channelId])
+}
+
+model Order {
+  id  String  @id @default(cuid())
+  status  String
+  customerId  String
+  vendorId  String
+  customer  Customer  @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  orderItems  OrderItem[]
+  invoice  Invoice?
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+
+  @@index([customerId])
+}
+
+model OrderItem {
+  id  String  @id @default(cuid())
+  description  String
+  quantity  Int
+  unitPrice  Float
+  orderId  String
+  order  Order  @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+
+  @@index([orderId])
+}
+
+model Invoice {
+  id  String  @id @default(cuid())
+  amount  Float
+  orderId  String @unique
+  order  Order  @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+
+  @@index([orderId])
+}
+
+model NotificationPreference {
+  id  String  @id @default(cuid())
+  userId  String @unique
+  orderAlerts  Boolean
+  messageAlerts  Boolean
+  user  User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+
+  @@index([userId])
+}
+
+model AuditEntry {
+  id  String  @id @default(cuid())
+  action  String
+  userId  String
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+}
+// spec-schema-gen:end
