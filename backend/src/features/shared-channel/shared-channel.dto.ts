@@ -1,28 +1,20 @@
 // SharedChannel DTOs
 
-export interface PostApiChannelsRequestDto {
+export interface CreateChannelRequestDto {
   name: string;
 }
 
-export interface PostApiChannelsResponseDto {
+export interface ChannelResponseDto {
   id: string;
   name: string;
 }
 
-export interface PostApiChannels:idMessagesRequestDto {
+export interface CreateMessageRequestDto {
   body: string;
 }
 
-export interface PostApiChannels:idMessagesResponseDto {
+export interface MessageResponseDto {
   id: string;
   body: string;
   channelId: string;
-}
-
-export interface GetApiChannelsRequestDto {
-}
-
-export interface GetApiChannelsResponseDto {
-  id: string;
-  name: string;
 }
