@@ -1,5 +1,19 @@
 // VendorOnboarding DTOs
 
+import { z } from 'zod';
+
+export const CreateProfileSchema = z.object({
+  companyName: z.string().trim().min(1).max(200),
+  contactEmail: z.string().trim().email(),
+});
+
+export const CreateDocumentSchema = z.object({
+  filename: z.string().trim().min(1).max(255),
+});
+
+export type CreateProfileDto = z.infer<typeof CreateProfileSchema>;
+export type CreateDocumentDto = z.infer<typeof CreateDocumentSchema>;
+
 export interface PostApiVendorProfileRequestDto {
   companyName: string;
   contactEmail: string;
@@ -21,8 +35,7 @@ export interface PostApiVendorDocumentsResponseDto {
   status: string;
 }
 
-export interface GetApiVendorDocumentsRequestDto {
-}
+export interface GetApiVendorDocumentsRequestDto {}
 
 export interface GetApiVendorDocumentsResponseDto {
   id: string;
