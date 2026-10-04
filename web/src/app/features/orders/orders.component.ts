@@ -77,9 +77,9 @@ const CONFIRM_OUTCOME =
             @for (order of orders(); track order.id) {
               <li data-testid="order-row">
                 <span>Order {{ order.id }}</span>
-                <span data-testid="order-status"> — status: {{ order.status }}</span>
+                <span data-testid="order-status"> - status: {{ order.status }}</span>
                 @if (order.estimatedDelivery) {
-                  <span> — estimated delivery: {{ order.estimatedDelivery }}</span>
+                  <span> - estimated delivery: {{ order.estimatedDelivery }}</span>
                 }
                 @if (order.status === 'pending') {
                   <input
@@ -149,7 +149,7 @@ export class OrdersComponent implements OnInit {
       });
       const order: Order = { ...created, status: created?.status ?? 'pending' };
       this.orders.update((list) => [order, ...list.filter((o) => o.id !== order.id)]);
-      this.message.set(`Order created: ${CREATE_OUTCOME}.`);
+      this.message.set('Order created: ' + CREATE_OUTCOME + '.');
       this.vendorId = '';
       this.items = [{ description: '', quantity: 1, unitPrice: 0 }];
     } catch (e: any) {
@@ -164,7 +164,7 @@ export class OrdersComponent implements OnInit {
       this.error.set('Choose an estimated delivery date before confirming.');
       return;
     }
-    const path = `/api/orders/${order.id}/confirm`;
+    const path = '/api/orders/' + order.id + '/confirm';
     if (this.api instanceof MockApiClient) {
       this.api.registerMock('PATCH', path, async () => ({ id: order.id, status: 'confirmed' }));
     }
@@ -177,7 +177,7 @@ export class OrdersComponent implements OnInit {
             : o,
         ),
       );
-      this.message.set(`Order confirmed: ${CONFIRM_OUTCOME}.`);
+      this.message.set('Order confirmed: ' + CONFIRM_OUTCOME + '.');
     } catch (e: any) {
       this.error.set(e?.message ?? 'Could not confirm order.');
     }
